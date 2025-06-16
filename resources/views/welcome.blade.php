@@ -1,5 +1,28 @@
 <x-main>
     <div class="album py-5 bg-body-tertiary">
+
+
+
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+            @guest
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('register') }}">Registrati</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('login') }}">Login</a>
+                </li>
+            @else
+                Ciao, {{ Auth::user()->email }}
+                <li class="nav-item">
+                    <form action="{{ route('logout') }}" method="post">
+                        @csrf
+                        <button class="nav-link" type="submit">Logout</button>
+                    </form>
+                </li>
+            @endguest
+        </ul>
+
         <div class="container">
             @if (session('success'))
                 <div class="alert alert-success" role="alert">
