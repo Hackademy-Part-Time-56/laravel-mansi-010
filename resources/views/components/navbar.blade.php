@@ -11,9 +11,15 @@
                     <a class="nav-link" href="/">Lista Libri</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="{{ route('authors.index') }}">Lista Autori</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="/crea-libro">Crea Libro</a>
                 </li>
 
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('authors.create') }}">Crea Autore</a>
+                </li>
             </ul>
         </div>
     </div>

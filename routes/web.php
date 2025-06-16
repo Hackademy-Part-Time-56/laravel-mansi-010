@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\BookController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,3 +15,5 @@ Route::get('/modifica-libro/{book}', [BookController::class, 'edit'])->name('edi
 Route::put('/aggiorna-libro/{book}', [BookController::class, 'update'])->name('update');
 
 Route::delete('/cancella-libro/{book}', [BookController::class, 'destroy'])->name('destroy');
+
+Route::resource('/authors', AuthorController::class);
