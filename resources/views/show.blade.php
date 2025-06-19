@@ -12,7 +12,9 @@
                             <h3 class="card-text">{{ $book->name }}</h3>
                             <p>Numero Pagine: {{ $book->pages }}</p>
                             <p>Anno di Scrittura: {{ $book->year ? $book->year : 'Ignoto' }} </p>
-                            <p>Scritto da: {{ $book->author->firstname . ' ' . $book->author->lastname }}</p>
+                            <p>Scritto da:
+                                {{ isset($book->author->firstname) ? $book->author->firstname . ' ' . $book->author->lastname : ' Autore Sconociuto' }}
+                            </p>
                         </div>
                     </div>
                 </div>

@@ -27,6 +27,7 @@
              <div class="mb-3">
                  <label class="form-label">Autore</label>
                  <select name="author_id" class="form-control">
+                     <option value="">Nessuno</option>
                      @foreach ($authors as $author)
                          <option value="{{ $author->id }}">{{ $author->firstname . ' ' . $author->lastname }}</option>
                      @endforeach
