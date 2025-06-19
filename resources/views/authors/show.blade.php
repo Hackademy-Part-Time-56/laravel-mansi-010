@@ -10,6 +10,13 @@
                             <h3 class="card-text">{{ $author->firstname }} {{ $author->lastname }}</h3>
 
                         </div>
+                        <p>Lista dei libri scritti</p>
+                        <ul>
+                            @foreach ($author->books as $book)
+                                <li>{{ $book->name }}</li>
+                            @endforeach
+
+                        </ul>
                     </div>
                 </div>
 
