@@ -25,6 +25,15 @@
                  <input type="text" class="form-control" name="year" value="{{ old('year') }}">
              </div>
              <div class="mb-3">
+                 <label class="form-label">Autore</label>
+                 <select name="author_id" class="form-control">
+                     @foreach ($authors as $author)
+                         <option value="{{ $author->id }}">{{ $author->firstname . ' ' . $author->lastname }}</option>
+                     @endforeach
+                 </select>
+             </div>
+
+             <div class="mb-3">
                  <label class="form-label">Copertina</label>
                  <input type="file" class="form-control" name="image" accept="image">
                  @error('image')

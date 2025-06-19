@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 
 class BookController extends Controller
 {
+
     public function index()
     {
         //$books = ['Divina COmmedia', 'testo3'];
@@ -24,7 +25,8 @@ class BookController extends Controller
 
     public function create() //GET
     {
-        return view('create');
+
+        return view('create', ['authors' => Author::all()]);
     }
 
 
@@ -42,7 +44,8 @@ class BookController extends Controller
             'name' => $request->name,
             'pages' => $request->pages,
             'year' =>  $request->year,
-            'image' =>  $path_image
+            'image' =>  $path_image,
+            'author_id' =>  $request->author_id,
         ]);
         return redirect()->route('index')->with('success', 'Libro creato con successo');
     }
@@ -55,7 +58,8 @@ class BookController extends Controller
 
     public function edit(Book $book)
     {
-        return view('edit', compact('book'));
+        $authors = Author::all();
+        return view('edit', compact('book', 'authors'));
     }
 
     public function update(UpdateBookRequest $request, Book $book)
@@ -70,7 +74,8 @@ class BookController extends Controller
             'name' => $request->name,
             'pages' => $request->pages,
             'year' =>  $request->year,
-            'image' =>  $path_image
+            'image' =>  $path_image,
+            'author_id' => $request->author_id,
         ]);
         return redirect()->route('index')->with('success', 'Libro modificato con successo');
     }
