@@ -14,7 +14,23 @@ class BookController extends Controller
     public function index()
     {
         //$books = ['Divina COmmedia', 'testo3'];
-        $books = Book::all();
+        //$books = Book::all();
+        // $stringa = 'ccc';
+        // if (isset($stringa)) {
+        //     dd($stringa);
+        // } else {
+        //     dd('Ti sei dimenticto di dichiarae la variabile');
+        // }
+
+        if (isset(auth()->user()->id)) {
+            $books = Book::where('user_id', auth()
+                ->user()->id)
+                ->orWhere('user_id', null)
+                ->get();
+        } else {
+            $books = Book::all();
+        }
+
         $authors = Author::all();
         return view('welcome', [
             'books' => $books,
@@ -46,6 +62,7 @@ class BookController extends Controller
             'year' =>  $request->year,
             'image' =>  $path_image,
             'author_id' =>  $request->author_id,
+            'user_id' => auth()->user()->id
         ]);
         return redirect()->route('index')->with('success', 'Libro creato con successo');
     }
@@ -58,6 +75,10 @@ class BookController extends Controller
 
     public function edit(Book $book)
     {
+        //Andiamo a controllare se l'utente connesso è il properiotario del libro
+        if (auth()->user()->id != $book->user_id) {
+            abort(401);
+        }
         $authors = Author::all();
         return view('edit', compact('book', 'authors'));
     }

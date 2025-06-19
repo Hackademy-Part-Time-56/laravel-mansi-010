@@ -7,8 +7,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [BookController::class, 'index'])->name('index');
 
-Route::get('/crea-libro', [BookController::class, 'create'])->name('create');
-Route::post('/salva-libro', [BookController::class, 'store'])->name('store');
+Route::get('/crea-libro', [BookController::class, 'create'])->name('create')->middleware('auth');
+Route::post('/salva-libro', [BookController::class, 'store'])->name('store')->middleware('auth');
 
 Route::get('/mostra-libro/{book}', [BookController::class, 'show'])->name('show');
 
