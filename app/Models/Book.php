@@ -16,4 +16,9 @@ class Book extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function categories() //plurale
+    {
+        return $this->belongsToMany(Category::class);
+    }
 }

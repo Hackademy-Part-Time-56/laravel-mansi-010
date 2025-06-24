@@ -15,6 +15,12 @@
                             <p>Scritto da:
                                 {{ isset($book->author->firstname) ? $book->author->firstname . ' ' . $book->author->lastname : ' Autore Sconociuto' }}
                             </p>
+                            <h3>Lista Categorie Associate</h3>
+                            <ul>
+                                @foreach ($book->categories as $category)
+                                    <li>{{ $category->name }}</li>
+                                @endforeach
+                            </ul>
                         </div>
                     </div>
                 </div>
